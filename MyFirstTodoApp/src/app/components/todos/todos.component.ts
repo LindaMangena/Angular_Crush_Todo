@@ -8,6 +8,7 @@ import { Todo } from './../../models/Todo';
 })
 export class TodosComponent implements OnInit {
   todos: Todo[];
+  inputTodo : string = " ";
 
   constructor() {}
 
@@ -17,7 +18,7 @@ export class TodosComponent implements OnInit {
       { content: 'second Todo', completed: false },
     ];
   }
-  toggleDone(id) {
+  toggleDone(id:number) {
     this.todos.map((v, i) => {
       if (i == id) v.completed = !v.completed;
       return v;
@@ -25,5 +26,12 @@ export class TodosComponent implements OnInit {
   }
   DeleteTodo(id:number){
     this.todos = this.todos.filter((v,i) => i !== id);
+  }
+
+  AddTodo(){
+    this.todos.push({
+      content: this.inputTodo,
+      completed: false
+    })
   }
 }
